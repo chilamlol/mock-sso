@@ -25,7 +25,7 @@ def completeAssignment(username):
                 mealDetailList = getMethodJsonFromApi(getMealCollectionDetailApiUrl(username, assignment["processId"]))
 
                 for mealDetail in mealDetailList["data"]:
-                    if mealDetail["c_menudate"] == "01/07/2022":
+                    if mealDetail["c_menudate"] == getTodayDate():
                         postMethodJsonFromApi(getCompleteAssignmentApiUrl(username, assignment["activityId"]))
             return True
         else:
