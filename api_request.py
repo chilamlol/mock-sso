@@ -3,14 +3,13 @@ import requests
 
 
 def getMethodJsonFromApi(url):
+    # API with header
+    # headers = {"api_key": getApiKey(), "api_id": getApiId()}
 
-    headers = {"api_key": getApiKey(), "api_id": getApiId()}
-
-    return requests.get(url, headers=headers).json()
+    return requests.get(url).json()
 
 
 def postMethodJsonFromApi(url):
+    # headers = {"api_key": getApiKey(), "api_id": getApiId()}
 
-    headers = {"api_key": getApiKey(), "api_id": getApiId()}
-
-    return requests.post(url, headers=headers).json()
+    return requests.post(url).json()

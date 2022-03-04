@@ -17,6 +17,25 @@ def getTodayDate():
     return today.strftime("%d/%m/%Y")  # 15/02/2022
 
 
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    print(iplist)
+    if get_my_ip() in iplist:
+        return render_template("successful.html")
+    else:
+        if request.method == 'POST':
+            username = request.form["name"]
+            iplist.update({get_my_ip(): username})
+            return render_template("successful.html")
+
+    return render_template('home.html')
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
+
+
+"""
 def completeAssignment(username):
     try:
         assignmentList = getMethodJsonFromApi(getAssignmentListApiUrl(username))
@@ -33,25 +52,4 @@ def completeAssignment(username):
     except Exception as e:
         print(e)
         return False
-
-
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    print(iplist)
-    if get_my_ip() in iplist:
-        username = iplist[get_my_ip()]
-        if completeAssignment(username):
-            return render_template("successful.html")
-    else:
-        if request.method == 'POST':
-            username = request.form["name"]
-            if completeAssignment(username):
-                iplist.update({get_my_ip(): username})
-                return render_template("successful.html")
-            else:
-                return render_template("not_successful.html")
-    return render_template('home.html')
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+"""
